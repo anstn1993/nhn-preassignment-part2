@@ -6,8 +6,10 @@
 
         <form action="/guestbook/modify" method="post">
 
-            <!--페이지 번호 저장을 위한 hidden input-->
+            <!--페이지 번호, 검색어 데이터 저장을 위한 hidden input-->
             <input type="hidden" name="page" th:value="${requestDTO.page}">
+            <input type="hidden" name="type" th:value="${requestDTO.type}">
+            <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
 
             <div class="form-group">
                 <label>Gno</label>
@@ -60,10 +62,13 @@
     });
 
     $(".listBtn").click(function() {
-        var pageInfo = $("input[name='page']");
-
+        var page = $("input[name='page']");
+        var type = $("input[name='type']");
+        var keyword = $("input[name='keyword']");
         actionForm.empty();//form 태그 비우고
-        actionForm.append("page", pageInfo);//페이지 번호만 노출
+        actionForm.append("page", page);//페이지 번호
+        actionForm.append("type", type);//검색 타입
+        actionForm.append("keyword", keyword);//검색어
         actionForm.attr("action", "/guestbook/list").attr("method", "get");
 
         actionForm.submit();
