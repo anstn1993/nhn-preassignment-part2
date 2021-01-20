@@ -28,4 +28,8 @@ public interface GuestBookService {
                 .modDate(entity.getModDate())
                 .build();
     }
+
+    GuestBookDTO read(Long gno);
+    void modify(GuestBookDTO dto);
+    void remove(Long gno);
 }
